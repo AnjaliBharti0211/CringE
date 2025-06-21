@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ product.name }} | CringE</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="logo">CringE</div>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <section class="product-detail">
+    <div class="container">
+      <img src="{{ product.image }}" alt="{{ product.name }}">
+      <div>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.details }}</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-bottom">&copy; 2025 CringE.</div>
+  </footer>
+</body>
+</html>

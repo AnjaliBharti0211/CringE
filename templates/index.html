@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CringE is the unapologetic tech e-commerce vibe — bold, Gen Z-powered and butter-smooth. Be Cringe, Not Caged.">
+  <meta name="keywords" content="Cringe, Tech Store, Gen Z Gadgets, Slay Electronics, Bold Brand, CringE Website">
+  <meta name="author" content="Anjali Bharti">
+  <title>CringE — Be Cringe, Not Caged</title>
+
+  <!-- Fonts and Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-container">
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+  <!-- Header -->
+  <header>
+    <div class="logo">CringE</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cart"><button>View Cart</button></a>
+      <a href="#">Story</a>
+      <a href="#">Support</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
+    <h1>Be Cringe, Not Caged</h1>
+    <p>Unapologetic. Unfiltered. Unbothered by basics.</p>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="products">
+    {% for product in products %}
+      <div class="product-card">
+        <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-card-link">
+          <div class="product-image">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+          </div>
+          <div class="product-details">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.details }}</p>
+          </div>
+        </a>
+        <form action="{{ url_for('add_to_cart', slug=product.slug) }}" method="post">
+          <button type="submit">Add to Cart</button>
+           </form>
+
+      </div>
+    {% endfor %}
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-section">
+      <h4>About CringE</h4>
+      <p>Minimalism is out. We’re here for flavor, fun & functionality.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Explore</h4>
+      <a href="#">Latest Drops</a>
+      <a href="#">Why CringE</a>
+      <a href="#">Partnerships</a>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <a href="#">hello@cringeverse.com</a>
+      <a href="#">@cringeverse</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 CringE.
+    </div>
+  </footer>
+
+  <!-- Cursor + JS -->
+  <div class="cursor" id="cursor"></div>
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>

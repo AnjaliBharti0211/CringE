@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your CringE Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header>
+    <div class="logo">CringE</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cart"><button>View Cart</button></a>
+    </nav>
+  </header>
+
+  <section class="cart-section">
+    <h2>Your CringE Cart</h2>
+
+    {% if items %}
+      <div class="cart-items">
+        {% for item in items %}
+          <div class="cart-item">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <div class="cart-info">
+              <h3>{{ item.name }}</h3>
+              <p>Qty: {{ item.quantity }}</p>
+              <p class="details">{{ item.details }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty-cart">Your cart looks empty 😔 Go add some Cringe!</p>
+    {% endif %}
+  </section>
+
+  <footer>
+    <div class="footer-bottom">
+      &copy; 2025 CringE. All rights fabulously reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
+
+
+
